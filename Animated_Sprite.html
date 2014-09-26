@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<title>Animated CSS Sprite</title>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<style>
+		#sprite {
+			position:absolute;
+			 width: 82px;
+            height: 352px;
+			margin: 30px auto;
+			background-image: url(sprite.png);
+			cursor:pointer;
+		}		
+	</style>
+</head>
+<body>
+	<div id="sprite" ></div>
+	
+<script type="text/javascript">
+		//$(document).ready(function(){
+			
+			$('#sprite').click(function(){
+
+			var frameWidth = 82;
+			var frameHeight = 352;
+			var spriteWidth = 1968;
+			var spriteHeight = 352;
+			var spriteElement = document.getElementById("sprite");
+
+			var currentPx = 0;
+			var ti;
+
+			function animateSprite() {
+
+				spriteElement.style.backgroundPosition = currentPx + 'px 0px';
+				currentPx = currentPx + frameWidth;
+
+				if (currentPx >= 2060) {
+					currentPx = 0;
+					clearTimeout(ti);
+				}
+				else{
+				ti = setTimeout(animateSprite, 25);
+				}
+			}
+			animateSprite();
+		});
+	</script>
+</body>
+</html>
